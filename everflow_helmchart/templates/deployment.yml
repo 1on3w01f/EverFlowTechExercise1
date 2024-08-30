@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: aspnetapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspnetapp
+  template:
+    metadata:
+      labels:
+        app: aspnetapp 
+    spec:
+      containers:
+        - name: aspnetapp 
+          image: acrdevopslbtechtest.azurecr.io/aspnetapp
+          ports:
+          - containerPort: 8080

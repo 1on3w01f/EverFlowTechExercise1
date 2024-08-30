@@ -1,0 +1,129 @@
+# Deploy to Azure Kubernetes Service
+# Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  branches:
+    include:
+      - main
+
+resources:
+- repo: self
+
+variables:
+
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'f6c208a1-830d-4392-999f-0aa0d3378b43'
+  imageRepository: 'aspnetapp'
+  containerRegistry: 'acrdevopslbtechtest.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildId)'
+  imagePullSecret: 'acrdevopslbtechtest4300b383-auth'
+
+  # Agent VM image name
+  agentPool: 'myUbuntuAgentPool'
+
+stages:
+  - stage: BuildAndTest
+    jobs:
+      - job: Build
+        pool: 
+          name: $(agentPool)
+        steps:
+          - script: |
+              dotnet build
+              dotnet test --logger:trx
+              dotnet test --collect:"Code Coverage"
+              ./scripts/lint.sh
+            displayName: 'Build, Unit Tests, and Linting'
+            
+          - task: SonarQubePrepare@4
+            inputs:
+              SonarQube: 'SonarQubeConnection'
+              projectKey: 'lbusari:everflow'
+              projectName: 'EverFlowTechExercise1'
+          - script: |
+              dotnet sonarscanner begin /k:"lbusari:everflow" /d:sonar.login="$SONARQUBE_TOKEN"
+              dotnet build
+              dotnet sonarscanner end /d:sonar.login="$SONARQUBE_TOKEN"
+            displayName: 'SonarQube Analysis'
+
+          - task: Docker@2
+            displayName: Build and push an image to container registry
+            inputs:
+              command: 'buildAndPush'
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              tags: |
+                $(tag)
+
+  - stage: DeployTest
+    jobs:
+      - deployment: DeployTest
+        environment: 'test'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    kubectl apply -f k8s/deployment.yaml --dry-run=client
+                    kubectl apply -f k8s/service.yaml --dry-run=client
+                  displayName: 'Dry-Run Deployment'
+
+                - task: HelmDeploy@0
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    azureSubscription: '5fb5e076-66ab-484e-b56a-42284e0c67b6'
+                    azureResourceGroup: 'rg-devops-lb-test'
+                    kubernetesCluster: 'aks-devops-lb-test'
+                    namespace: 'test'
+                    command: 'upgrade'
+                    chartType: 'FilePath'
+                    chartPath: './everflow_helmchart'
+                    releaseName: 'aspnetapp-test'
+                    overrideValues: |
+                      image.repository=$(ACR_NAME).azurecr.io/$(imageName)
+                      image.tag=$(Build.BuildId)
+                  displayName: 'Helm Upgrade to Test Environment'
+                - script: |
+                    kubectl rollout status deployment/aspnetapp -n test
+                    ./scripts/run-smoke-tests.sh
+                  displayName: 'Smoke Tests'
+                - task: Bash@3
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      ./scripts/run-integration-tests.sh
+                  displayName: 'Integration Tests'
+
+  - stage: DeployProd
+    dependsOn: DeployTest
+    jobs:
+      - deployment: DeployProd
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: HelmDeploy@0
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    azureSubscription: '5fb5e076-66ab-484e-b56a-42284e0c67b6'
+                    azureResourceGroup: 'rg-devops-lb-test'
+                    kubernetesCluster: 'aks-devops-lb-test'
+                    namespace: 'production'
+                    command: 'upgrade'
+                    chartType: 'FilePath'
+                    chartPath: './everflow_helmchart'
+                    releaseName: 'aspnetapp-prod'
+                    overrideValues: |
+                      image.repository=$(ACR_NAME).azurecr.io/$(imageName)
+                      image.tag=$(Build.BuildId)
+                  displayName: 'Helm Upgrade to Production Environment'
+                - script: |
+                    kubectl rollout status deployment/aspnetapp -n production
+                    ./scripts/run-smoke-tests.sh
+                    ./scripts/run-performance-tests.sh
+                  displayName: 'Post-Deployment Validation'
+
