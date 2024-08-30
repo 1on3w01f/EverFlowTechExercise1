@@ -55,7 +55,7 @@
 
 <p>The following scripts are integral to the pipeline:</p>
 <ul>
-  <li>Linting (./scripts/lint.sh): Ensures the code follows proper formatting and standards.</li>
+<li>Linting (./scripts/lint.sh): Ensures the code follows proper formatting and standards.</li>
 <li>Smoke Tests (./scripts/run-smoke-tests.sh): Verifies that the application is responsive, and the basic functionalities work after deployment.</li>
 <li>Integration Tests (./scripts/run-integration-tests.sh): Ensures that the application components interact correctly after deployment.</li>
 <li>Performance Tests (./scripts/run-performance-tests.sh): Assesses the application’s performance under load.</li>
@@ -63,9 +63,9 @@
 # 6. Security Best Practices
 <ul>
 <li>Infrastructure as Code: All infrastructure is defined using Terraform, allowing for version control and traceability.</li>
-Environment Variables: Sensitive data like credentials are stored securely and accessed using Azure Key Vault.
-SonarQube: Static code analysis ensures the code adheres to security and quality standards.
-Helm: Securely deploys applications to Kubernetes, ensuring that only the correct images and configurations are used.
+<li>Environment Variables: Sensitive data like credentials are stored securely and accessed using Azure Key Vault.</li>
+<li>SonarQube: Static code analysis ensures the code adheres to security and quality standards.</li>
+<li></li>Helm: Securely deploys applications to Kubernetes, ensuring that only the correct images and configurations are used.</li>
 </ul>
 
 # 7. Disaster Recovery (DR) and Business Continuity Planning (BCP)
@@ -82,6 +82,7 @@ Helm: Securely deploys applications to Kubernetes, ensuring that only the correc
 <li>Security Considerations: Future improvements could include enhancing security by implementing encryption and more robust access controls.</li>
 <li>Time Constraints: If more time were available, additional features like automated rollback on failure, enhanced performance testing, and detailed BCP documentation would be implemented.</li>
 </ul>
+
 # 9. Future Work
 <p>If more time were available, the following improvements would be considered:</p>
 <ul>
