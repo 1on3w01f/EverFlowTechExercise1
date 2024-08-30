@@ -1,15 +1,16 @@
 # EverFlowTechExercise1
 
 # 1. Project Overview
-This project involves setting up a continuous delivery (CD) pipeline for an ASP.NET Core application (aspnetapp) using Azure DevOps, Terraform for Infrastructure as Code (IaC), Helm for Kubernetes deployments, and Bash scripts for validation and testing.
+<p>This project involves setting up a continuous delivery (CD) pipeline for an ASP.NET Core application (aspnetapp) using Azure DevOps, Terraform for Infrastructure as Code (IaC), Helm for Kubernetes deployments, and Bash scripts for validation and testing.</p>
 
 # 2. Prioritisation
-A prioritisation technique was used to decide on the importance of tasks:  
+<p>A prioritisation technique was used to decide on the importance of tasks:</p> 
 
-The Essential aspect of the project.
-•	Set up Infrastructure as Code (Terraform).
-•	Create a coded pipeline in Azure DevOps.
-•	Implement pre- and post-deployment validations.
+<p>The Essential aspect of the project.</p>
+<ul>
+<li> •	Set up Infrastructure as Code (Terraform). </li>
+<li> •	Create a coded pipeline in Azure DevOps. </li>
+<li> •	Implement pre- and post-deployment validations. </li>
 •	Automation
 
 The Important but not critical:
