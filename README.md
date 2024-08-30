@@ -12,35 +12,37 @@
 <li> Create a coded pipeline in Azure DevOps. </li>
 <li> Implement pre- and post-deployment validations. </li>
 <li> Automation </li>
-
+</ul>
 <p> The Important but not critical: </p>
 <ul>
 <li> Ensure security best practices are followed.</li>
 <li> Implement SonarQube for code quality analysis.</li>
 <li> Provide comprehensive documentation.</li>
-
+</ul>
 <p> The Desirable but not necessary:</p>
 <ul>
 <li> Implement performance testing as part of post-deployment validation.</li>
 <li> Set up disaster recovery (DR) and business continuity planning (BCP) documentation.</li>
-
+</ul>
 <p> The Not included in the current scope:</p>
 <ul>
 <li>	Implement advanced security features like encryption in transit, not included in the initial scope due to time constraints.</li>
-
+</ul>
 # 3. Infrastructure Setup
 <p> Infrastructure as Code (IaC) in this project is implemented using Terraform to automate and manage Azure resources, including AKS for Kubernetes and ACR for Docker images. This approach ensures consistency, scalability, and reproducibility across environments. Terraform scripts are version-controlled, enabling easy tracking and rollbacks. The Integration with Azure DevOps automates the infrastructure setup as part of the CI/CD pipeline, enhancing security and efficiency of the project. </p>
 
 # 4. Pipeline Overview
-<p>The pipeline is divided into three stages:</p>
+<p> a. The pipeline is divided into three stages:</p>
 <p> Build and Test: </p>
-<p>Builds the application.
+<p>Builds the application.</p>
 <p>Runs unit tests, code coverage, linting, and SonarQube analysis. </p>
 <p>Builds and pushes the Docker image to the Azure Container Registry (ACR).</p>
-b.	Deploy to Test Environment:
-•	Uses Helm to deploy the application to the test environment in Kubernetes.
-•	Runs smoke tests and integration tests to validate the deployment.
 
+<p> b.	Deploy to Test Environment: </p>
+<ul>
+<li>Uses Helm to deploy the application to the test environment in Kubernetes.</li>
+<li>Runs smoke tests and integration tests to validate the deployment.</li>
+</ul>
 c.	Deploy to Production Environment:
 •	Uses Helm to deploy the application to the production environment in Kubernetes.
 •	Runs smoke tests and performance tests for post-deployment validation.
