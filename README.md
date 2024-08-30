@@ -76,11 +76,12 @@ Helm: Securely deploys applications to Kubernetes, ensuring that only the correc
 </ul>
 
 # 8. Notes
-<p>Pipeline YAML: The provided YAML pipeline is flexible, allowing for easy updates by modifying variables and scripts.</p>
-<p>Flexibility: Variables are used extensively to ensure the pipeline can be reused across different environments with minimal changes.</p>
-<p>Security Considerations: Future improvements could include enhancing security by implementing encryption and more robust access controls.</p>
-<p>Time Constraints: If more time were available, additional features like automated rollback on failure, enhanced performance testing, and detailed BCP documentation would be implemented.</p>
-
+<ul>
+<li>Pipeline YAML: The provided YAML pipeline is flexible, allowing for easy updates by modifying variables and scripts.</li>
+<li>Flexibility: Variables are used extensively to ensure the pipeline can be reused across different environments with minimal changes.</li>
+<li>Security Considerations: Future improvements could include enhancing security by implementing encryption and more robust access controls.</li>
+<li>Time Constraints: If more time were available, additional features like automated rollback on failure, enhanced performance testing, and detailed BCP documentation would be implemented.</li>
+</ul>
 # 9. Future Work
 <p>If more time were available, the following improvements would be considered:</p>
 <ul>
