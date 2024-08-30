@@ -43,22 +43,29 @@
 <li>Uses Helm to deploy the application to the test environment in Kubernetes.</li>
 <li>Runs smoke tests and integration tests to validate the deployment.</li>
 </ul>
-c.	Deploy to Production Environment:
-•	Uses Helm to deploy the application to the production environment in Kubernetes.
-•	Runs smoke tests and performance tests for post-deployment validation.
+
+<p>c.	Deploy to Production Environment:</p>
+<ul>
+<li>Uses Helm to deploy the application to the production environment in Kubernetes.</li>
+<li>Runs smoke tests and performance tests for post-deployment validation.</li>
+</ul>
 
 # 5. Scripts Used
 
-The following scripts are integral to the pipeline:
-•	Linting (./scripts/lint.sh): Ensures the code follows proper formatting and standards.
-•	Smoke Tests (./scripts/run-smoke-tests.sh): Verifies that the application is responsive, and the basic functionalities work after deployment.
-•	Integration Tests (./scripts/run-integration-tests.sh): Ensures that the application components interact correctly after deployment.
-•	Performance Tests (./scripts/run-performance-tests.sh): Assesses the application’s performance under load.
+<p>The following scripts are integral to the pipeline:</p>
+<ul>
+  <li>Linting (./scripts/lint.sh): Ensures the code follows proper formatting and standards.</li>
+<li>Smoke Tests (./scripts/run-smoke-tests.sh): Verifies that the application is responsive, and the basic functionalities work after deployment.</li>
+<li>Integration Tests (./scripts/run-integration-tests.sh): Ensures that the application components interact correctly after deployment.</li>
+<li>Performance Tests (./scripts/run-performance-tests.sh): Assesses the application’s performance under load.</li>
+
 # 6. Security Best Practices
-•	Infrastructure as Code: All infrastructure is defined using Terraform, allowing for version control and traceability.
-•	Environment Variables: Sensitive data like credentials are stored securely and accessed using Azure Key Vault.
-•	SonarQube: Static code analysis ensures the code adheres to security and quality standards.
-•	Helm: Securely deploys applications to Kubernetes, ensuring that only the correct images and configurations are used.
+<ul>
+<li>Infrastructure as Code: All infrastructure is defined using Terraform, allowing for version control and traceability.</li>
+Environment Variables: Sensitive data like credentials are stored securely and accessed using Azure Key Vault.
+SonarQube: Static code analysis ensures the code adheres to security and quality standards.
+Helm: Securely deploys applications to Kubernetes, ensuring that only the correct images and configurations are used.
+</ul>
 
 # 7. Disaster Recovery (DR) and Business Continuity Planning (BCP)
 Future Improvements:
