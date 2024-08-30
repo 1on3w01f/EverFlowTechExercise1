@@ -8,34 +8,35 @@
 
 <p>The Essential aspect of the project.</p>
 <ul>
-<li> •	Set up Infrastructure as Code (Terraform). </li>
-<li> •	Create a coded pipeline in Azure DevOps. </li>
-<li> •	Implement pre- and post-deployment validations. </li>
-•	Automation
+<li> Set up Infrastructure as Code (Terraform). </li>
+<li> Create a coded pipeline in Azure DevOps. </li>
+<li> Implement pre- and post-deployment validations. </li>
+<li> Automation </li>
 
-The Important but not critical:
-•	Ensure security best practices are followed.
-•	Implement SonarQube for code quality analysis.
-•	Provide comprehensive documentation.
+<p> The Important but not critical: </p>
+<ul>
+<li> Ensure security best practices are followed.</li>
+<li> Implement SonarQube for code quality analysis.</li>
+<li> Provide comprehensive documentation.</li>
 
-The Desirable but not necessary:
-•	Implement performance testing as part of post-deployment validation.
-•	Set up disaster recovery (DR) and business continuity planning (BCP) documentation.
+<p> The Desirable but not necessary:</p>
+<ul>
+<li> Implement performance testing as part of post-deployment validation.</li>
+<li> Set up disaster recovery (DR) and business continuity planning (BCP) documentation.</li>
 
-The Not included in the current scope:
-•	Implement advanced security features like encryption in transit, not included in the initial scope due to time constraints.
+<p> The Not included in the current scope:</p>
+<ul>
+<li>	Implement advanced security features like encryption in transit, not included in the initial scope due to time constraints.</li>
 
 # 3. Infrastructure Setup
-Infrastructure as Code (IaC) in this project is implemented using Terraform to automate and manage Azure resources, including AKS for Kubernetes and ACR for Docker images. This approach ensures consistency, scalability, and reproducibility across environments. Terraform scripts are version-controlled, enabling easy tracking and rollbacks. The Integration with Azure DevOps automates the infrastructure setup as part of the CI/CD pipeline, enhancing security and efficiency of the project.
+<p> Infrastructure as Code (IaC) in this project is implemented using Terraform to automate and manage Azure resources, including AKS for Kubernetes and ACR for Docker images. This approach ensures consistency, scalability, and reproducibility across environments. Terraform scripts are version-controlled, enabling easy tracking and rollbacks. The Integration with Azure DevOps automates the infrastructure setup as part of the CI/CD pipeline, enhancing security and efficiency of the project. </p>
 
 # 4. Pipeline Overview
-The pipeline is divided into three stages:
-
-a.	Build and Test:
-o	Builds the application.
-o	Runs unit tests, code coverage, linting, and SonarQube analysis.
-o	Builds and pushes the Docker image to the Azure Container Registry (ACR).
-
+<p>The pipeline is divided into three stages:</p>
+<p> Build and Test: </p>
+<p>Builds the application.
+<p>Runs unit tests, code coverage, linting, and SonarQube analysis. </p>
+<p>Builds and pushes the Docker image to the Azure Container Registry (ACR).</p>
 b.	Deploy to Test Environment:
 •	Uses Helm to deploy the application to the test environment in Kubernetes.
 •	Runs smoke tests and integration tests to validate the deployment.
@@ -51,7 +52,6 @@ The following scripts are integral to the pipeline:
 •	Smoke Tests (./scripts/run-smoke-tests.sh): Verifies that the application is responsive, and the basic functionalities work after deployment.
 •	Integration Tests (./scripts/run-integration-tests.sh): Ensures that the application components interact correctly after deployment.
 •	Performance Tests (./scripts/run-performance-tests.sh): Assesses the application’s performance under load.
-
 # 6. Security Best Practices
 •	Infrastructure as Code: All infrastructure is defined using Terraform, allowing for version control and traceability.
 •	Environment Variables: Sensitive data like credentials are stored securely and accessed using Azure Key Vault.
