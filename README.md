@@ -32,12 +32,13 @@
 <p> Infrastructure as Code (IaC) in this project is implemented using Terraform to automate and manage Azure resources, including AKS for Kubernetes and ACR for Docker images. This approach ensures consistency, scalability, and reproducibility across environments. Terraform scripts are version-controlled, enabling easy tracking and rollbacks. The Integration with Azure DevOps automates the infrastructure setup as part of the CI/CD pipeline, enhancing security and efficiency of the project. </p>
 
 # 4. Pipeline Overview
-<p> a. The pipeline is divided into three stages:</p>
-<p> Build and Test: </p>
-<p>Builds the application.</p>
-<p>Runs unit tests, code coverage, linting, and SonarQube analysis. </p>
-<p>Builds and pushes the Docker image to the Azure Container Registry (ACR).</p>
-
+<p> The pipeline is divided into three stages:</p>
+<p> a. Build and Test: </p>
+<ul>
+<li>Builds the application.</li>
+<li>Runs unit tests, code coverage, linting, and SonarQube analysis. </li>
+<li>Builds and pushes the Docker image to the Azure Container Registry (ACR).</li>
+</ul>
 <p> b.	Deploy to Test Environment: </p>
 <ul>
 <li>Uses Helm to deploy the application to the test environment in Kubernetes.</li>
@@ -68,20 +69,23 @@ Helm: Securely deploys applications to Kubernetes, ensuring that only the correc
 </ul>
 
 # 7. Disaster Recovery (DR) and Business Continuity Planning (BCP)
-Future Improvements:
-DR Strategy: Implement a backup and restore strategy for the Azure Kubernetes Service (AKS) and Azure Container Registry (ACR). This could involve creating scheduled backups of application data and configurations.
-BCP Documentation: Develop a comprehensive plan that outlines the steps to recover from various types of failures, ensuring minimal downtime. This should include automated failover processes and regular DR drills.
+<p>Future Improvements:</p>
+<ul>
+  <p>DR Strategy: Implement a backup and restore strategy for the Azure Kubernetes Service (AKS) and Azure Container Registry (ACR). This could involve creating scheduled backups of application data and configurations.</p>
+  <p>BCP Documentation: Develop a comprehensive plan that outlines the steps to recover from various types of failures, ensuring minimal downtime. This should include automated failover processes and regular DR drills.</p>
+</ul>
 
 # 8. Notes
-Pipeline YAML: The provided YAML pipeline is flexible, allowing for easy updates by modifying variables and scripts.
-Flexibility: Variables are used extensively to ensure the pipeline can be reused across different environments with minimal changes.
-Security Considerations: Future improvements could include enhancing security by implementing encryption and more robust access controls.
-Time Constraints: If more time were available, additional features like automated rollback on failure, enhanced performance testing, and detailed BCP documentation would be implemented.
+<p>Pipeline YAML: The provided YAML pipeline is flexible, allowing for easy updates by modifying variables and scripts.</p>
+<p>Flexibility: Variables are used extensively to ensure the pipeline can be reused across different environments with minimal changes.</p>
+<p>Security Considerations: Future improvements could include enhancing security by implementing encryption and more robust access controls.</p>
+<p>Time Constraints: If more time were available, additional features like automated rollback on failure, enhanced performance testing, and detailed BCP documentation would be implemented.</p>
 
 # 9. Future Work
-If more time were available, the following improvements would be considered:
-•	Implementing encryption in transit and at rest, along with more granular access controls.
-•	Integrating tools like Prometheus and Grafana for real-time monitoring and alerting.
-•	Setting up automatic rollback mechanisms in case of deployment failures.
-•	Developing a full-scale business continuity plan, including detailed disaster recovery procedures and automated DR drills.
-
+<p>If more time were available, the following improvements would be considered:</p>
+<ul>
+<li>Implementing encryption in transit and at rest, along with more granular access controls.</li>
+<li>Integrating tools like Prometheus and Grafana for real-time monitoring and alerting.</li>
+<li>Setting up automatic rollback mechanisms in case of deployment failures.</li>
+<li>Developing a full-scale business continuity plan, including detailed disaster recovery procedures and automated DR drills.</li>
+</ul>
